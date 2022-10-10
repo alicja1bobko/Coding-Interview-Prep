@@ -3,7 +3,7 @@
 
 // For example, aab should return 2 because it has 6 total permutations (aab, aab, aba, aba, baa, baa), but only 2 of them (aba and aba) don't have the same letter (in this case a) repeating.
 
-function findPerms(str) {
+export function findPerms(str) {
   if (str.length === 0) return "";
   if (str.length === 1) return str;
   let result = [];
@@ -19,21 +19,18 @@ function findPerms(str) {
   return result;
 }
 
-const permAlone = (str) => {
-  let withRepeatingLetters = findPerms(str);
-  if (withRepeatingLetters.length === 1) return 1;
-  let withoutRepeatingLetters = withRepeatingLetters.filter(
-    (el) =>
-      el
-        .split("")
-        .map((element, index, array) => {
-          if (array[index] === array[index + 1]) return "";
-          return element;
-        })
-        .join("").length === el.length
-  ).length;
-  return withoutRepeatingLetters;
-};
-
-console.log(permAlone("aaa")); //should return 0
-console.log(permAlone("abfdefa")); // should return 2640.
+ export function permAlone(str) {
+   let withRepeatingLetters = findPerms(str);
+   if (withRepeatingLetters.length === 1) return 1;
+   let withoutRepeatingLetters = withRepeatingLetters.filter(
+     (el) =>
+       el
+         .split("")
+         .map((element, index, array) => {
+           if (array[index] === array[index + 1]) return "";
+           return element;
+         })
+         .join("").length === el.length
+   ).length;
+   return withoutRepeatingLetters;
+ };
